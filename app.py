@@ -1,6 +1,6 @@
 import os
 import streamlit as st
-from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
@@ -20,7 +20,7 @@ uploaded_file = st.file_uploader("Upload a PDF document", type=["pdf"])
 # --- Cache the Database Load ---
 @st.cache_resource
 def load_and_embed_data(file_name, file_hash): # FIX 1: File hash forces the cache to reset correctly
-    loader = PyPDFLoader(file_name)
+    loader = PyMuPDFLoader(file_name)
     pages = loader.load()
     # FIX 2: Optimal size so the MiniLM embedding model doesn't truncate our text
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
