@@ -10,3 +10,4 @@ pypdf
 sentence-transformers
 pysqlite3-binary
 protobuf<5.0.0
+pymupdf
